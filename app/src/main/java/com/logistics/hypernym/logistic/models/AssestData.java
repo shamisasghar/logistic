@@ -1,7 +1,7 @@
 package com.logistics.hypernym.logistic.models;
 
 /**
- * Created by Metis on 17-Dec-17.
+ * Created by Shamis on 17-Dec-17.
  */
 
 public class AssestData {
