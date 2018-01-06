@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardviewhome_map"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/nestedscrollview"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.gms.maps.MapView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/mapView"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.google.android.gms.maps.MapView>
+    </android.support.v7.widget.CardView>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/nestedscrollview"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardviewhome_map">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cardview_currentdayjob"
+                android:layout_marginTop="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/linear_lastjob"
+                        android:gravity="center"
+                        android:background="@color/colorPrimary">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txt_currentdayjob"
+                            android:text="LAST JOB DETAIL"
+                            android:padding="5dp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textSize="15sp"
+                            android:textColor="#fff"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_lastjob"
+                        android:id="@+id/linear_jobstattime"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/starttime"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="2"
+                            android:text="Job Start Time :"
+                            android:textColor="#000000"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="12:00 Pm"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_jobstattime"
+                        android:id="@+id/linear_jobendtime"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:id="@+id/img_jobimage"
+                            android:tint="#008442"
+                            android:src="@drawable/endtime"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="2"
+                            android:text="Job End Time :"
+                            android:id="@+id/txt_jobstarttime"
+                            android:textColor="#000000"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:id="@+id/txt_jobtime"
+                            android:text="02:00 Pm"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_jobendtime"
+                        android:id="@+id/linear_actual_start_time"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:tint="#e5d300"
+                            android:src="@drawable/actualtime"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="2"
+                            android:text="Actual Start Time :"
+                            android:textColor="#000000"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="12:30 Pm"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_actual_start_time"
+                        android:id="@+id/linear_actual_end_time"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/actualtime"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="2"
+                            android:text="Actual End Time :"
+                            android:textColor="#000000"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="02:30 Pm"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_actual_end_time"
+                        android:id="@+id/linear_violation"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/warning"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="Violations :"
+                            android:textColor="#ff0000"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="08"
+                            android:textColor="#ff0000"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

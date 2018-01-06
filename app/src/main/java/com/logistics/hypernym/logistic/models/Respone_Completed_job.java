@@ -1,0 +1,14 @@
+package com.logistics.hypernym.logistic.models;
+
+import java.util.List;
+
+/**
+ * Created by Metis on 04-Jan-18.
+ */
+
+public class Respone_Completed_job {
+
+    public List<JobInfo_> job_info;
+    public int job_count;
+
+}

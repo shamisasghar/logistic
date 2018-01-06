@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_contraint"
+    tools:context="com.logistics.hypernym.logistic.HomeActivity">
+    <include layout="@layout/app_bar_activejob"
+        android:id="@+id/layout"
+        app:layout_constraintBottom_toTopOf="@+id/cardview_map"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+    </include>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview_map"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="65dp">
+
+        <fragment
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/mapView"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </fragment>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_slide"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_map">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_distance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/linner_distance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintBottom_toTopOf="@+id/no_km"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/compasss" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:text="Job Distance"
+                                android:textAlignment="textStart"
+                                android:textColor="#000"
+                                android:textSize="19dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/no_km"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/linner_distance"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+                            <TextView
+                                android:id="@+id/txt_distance"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="25"
+                                android:gravity="right"
+                                android:textColor="#000"
+                                android:textSize="40dp"
+                                android:textStyle="bold"
+                                android:layout_weight="3"/>
+                            <TextView
+                                android:id="@+id/txt_km"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Km"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <com.github.capur16.digitspeedviewlib.DigitSpeedView
+                            android:id="@+id/digit_speed_view1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            app:disableBackgroundImage="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:speed="0"
+                            app:speedTextSize="20dp"
+                            app:unit="Km/h"
+                            app:unitTextSize="4dp" />
+                    </android.support.constraint.ConstraintLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardview_distance"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/cardview_jobdetail"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/linear_jobdetails"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:background="@color/colorPrimary">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txt_jobdetail"
+                            android:text="JOB DETAIL"
+                            android:textStyle="bold"
+                            android:textColor="#fff"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_jobdetails"
+                        android:id="@+id/linear_jobstattime"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/starttime"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="Job Start Time :"
+                            android:textColor="#5aadff"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="12:00 Pm"
+                            android:textColor="#5aadff"
+                            android:textSize="20dp"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_jobstattime"
+                        android:id="@+id/linear_jobendtime"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:id="@+id/img_jobimage"
+                            android:src="@drawable/endtime"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="Job End Time :"
+                            android:id="@+id/txt_jobstarttime"
+                            android:textColor="#ff5a5a"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:id="@+id/txt_jobtime"
+                            android:text="02:00 Pm"
+                            android:textColor="#ff5a5a"
+                            android:textSize="20dp"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_jobendtime"
+                        android:id="@+id/linear_jobdestination"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/actualtime"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="0"
+                            android:text="Actual Start Time :"
+                            android:textColor="#C232C2"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="12:30 Pm"
+                            android:textColor="#C232C2"
+                            android:textSize="20dp"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardview_jobdetail"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/cardview_assest"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:id="@+id/linear_assest"
+                        android:background="@color/colorPrimary">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ASSEST DETAIL"
+                            android:padding="5dp"
+                            android:textStyle="bold"
+                            android:textColor="#fff"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/linear_assest"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/recycler_view">
+                        </android.support.v7.widget.RecyclerView>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <com.shitij.goyal.slidebutton.SwipeButton
+        android:id="@+id/btn_slide"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        app:after_confirmation_background="#000"
+        app:button_confirm_text="Confirmed!!"
+        app:button_swipe_text="Swipe!!"
+        android:background="@color/colorPrimary"
+        android:text="Swipe To Completed"
+        app:button_post_confirm_text="Completed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view"
+        android:textColor="#FFFFFF"/>
+</android.support.constraint.ConstraintLayout>

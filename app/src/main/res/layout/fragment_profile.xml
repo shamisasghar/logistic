@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/relativelayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageview_setting"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/user"
+                app:civ_border_color="#000000"
+                app:civ_border_width="3dp" />
+
+            <TextView
+                android:id="@+id/txt_drivername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageview_setting"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="Driver Name"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:id="@+id/view1"
+                android:layout_below="@+id/txt_drivername"
+                android:background="#ff0000">
+            </View>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/img_cell"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/img_cell"
+                android:layout_below="@+id/view1"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/txt_mobileno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_cell"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Mobile No"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:id="@+id/view2"
+                android:layout_below="@+id/txt_mobileno"
+                android:background="#ff0000">
+            </View>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/img_email"
+                android:layout_below="@+id/view2"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/img_email"/>
+
+            <TextView
+                android:id="@+id/txt_Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Email"
+                android:textColor="#000"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:id="@+id/view3"
+                android:layout_below="@+id/txt_Email"
+                android:background="#ff0000">
+            </View>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/img_driver_id"
+                android:src="@drawable/img_id_card"
+                android:layout_below="@+id/view3"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/txt_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_driver_id"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Driver ID"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:id="@+id/view4"
+                android:layout_below="@+id/txt_password"
+                android:background="#ff0000">
+            </View>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_signout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="5dp"
+        android:text="Sign Out"
+        android:background="@drawable/border_black"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/nestedscrollview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

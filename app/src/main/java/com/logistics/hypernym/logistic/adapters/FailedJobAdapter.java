@@ -1,0 +1,64 @@
+package com.logistics.hypernym.logistic.adapters;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.logistics.hypernym.logistic.R;
+import com.logistics.hypernym.logistic.models.JobInfo_;
+
+import java.util.List;
+
+/**
+ * Created by Metis on 05-Jan-18.
+ */
+
+public class FailedJobAdapter extends RecyclerView.Adapter<FailedJobAdapter.MyViewHolder> {
+    private List<JobInfo_> jobInfo_s;
+
+
+    public FailedJobAdapter(List<JobInfo_> jobInfo_s)
+    {
+
+        this.jobInfo_s=jobInfo_s;
+    }
+
+    @Override
+    public FailedJobAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_complete_job, parent, false);
+        return new FailedJobAdapter.MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(FailedJobAdapter.MyViewHolder holder, int position) {
+
+        holder.jobname.setText(jobInfo_s.get(position).getJob_name());
+        holder.jobstatus.setText(jobInfo_s.get(position).getJob_status());
+        holder.starttime.setText(jobInfo_s.get(position).getJob_start_time());
+        holder.endtime.setText(jobInfo_s.get(position).getJob_end_time());
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return jobInfo_s.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView jobname, jobstatus, starttime, endtime,compled_job;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+
+            jobname = (TextView) itemView.findViewById(R.id.txt_jobname);
+            jobstatus = (TextView) itemView.findViewById(R.id.txt_jobstatus);
+            starttime = (TextView) itemView.findViewById(R.id.txt_starttime);
+            endtime = (TextView) itemView.findViewById(R.id.txt_endtime);
+            //   compled_job = (TextView) itemView.findViewById(R.id.txt_no_completed_job);
+
+        }
+    }
+}
