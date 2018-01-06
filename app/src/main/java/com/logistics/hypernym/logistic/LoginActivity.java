@@ -1,6 +1,5 @@
 package com.logistics.hypernym.logistic;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -11,23 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.TextureView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.ybq.android.spinkit.style.DoubleBounce;
-import com.github.ybq.android.spinkit.style.FadingCircle;
-import com.logistics.hypernym.logistic.api.ApiClient;
 import com.logistics.hypernym.logistic.api.ApiInterface;
 import com.logistics.hypernym.logistic.models.User;
+import com.logistics.hypernym.logistic.models.WebAPIResponse;
 import com.logistics.hypernym.logistic.utils.LoginUtils;
-import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.HashMap;
 
@@ -61,67 +54,47 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
 
         if (LoginUtils.isUserLogin(getApplicationContext())) {
-            User u = LoginUtils.getUser(getApplicationContext());
-
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
-            Toast.makeText(this, "User already been logged in", Toast.LENGTH_SHORT).show();
         }
-        else
-
-        {
+        else {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
-
             btn_sign.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     submit();
-
                 }
             });
         }
     }
     private void submit() {
-        if (!validateName()) {
+        if (!validateName())
             return;
-        }
-
-        if (!validatePassword()) {
-            return;
-        }
+        if (!validatePassword()) return;
 
         progressBar.setVisibility(View.VISIBLE);
 
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        String username = edit_username.getText().toString();
-        String password = edit_password.getText().toString();
-        //    "driver1@kotal.com"
-        //    "driver@2017"
+        String username = edit_username.getText().toString(); //    "driver1@kotal.com"
+        String password = edit_password.getText().toString();//    "driver@2017"
         HashMap<String, Object> body = new HashMap<>();
         body.put("email", username);
         body.put("password", password);
-        Call<User> call_getlist = apiService.loginUser(body);
-        call_getlist.enqueue(new Callback<User>()
+        ApiInterface.retrofit.loginUser(body).enqueue(new Callback<WebAPIResponse<User>>()
         {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User user = response.body();
-                if (user != null && user.getStatus()) {
-                    Toast.makeText(LoginActivity.this, user.getResponse().getToken(), Toast.LENGTH_SHORT).show();
-                    LoginUtils.saveUserToken(LoginActivity.this, user.getResponse().getToken(),Integer.toString(user.getResponse().getAssociatedEntity()));
+            public void onResponse(Call<WebAPIResponse<User>> call, Response<WebAPIResponse<User>> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.body().status) {
+                    Toast.makeText(LoginActivity.this, response.body().response.getToken(), Toast.LENGTH_SHORT).show();
+                    LoginUtils.saveUserToken(LoginActivity.this, response.body().response.getToken(),Integer.toString(response.body().response.getAssociatedEntity()));
                     LoginUtils.userLoggedIn(LoginActivity.this);
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
-                    Toast.makeText(LoginActivity.this, "user logged in"+Integer.toString(user.getResponse().getAssociatedEntity()), Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
-
                 }
                 else
                 {
-
                     Snackbar snackbar=Snackbar.make(findViewById(android.R.id.content), "Wrong Email & Password", Snackbar.LENGTH_LONG);
                     View view=snackbar.getView();
                     TextView tv = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
@@ -129,15 +102,12 @@ public class LoginActivity extends AppCompatActivity {
                     tv.setTextColor(ContextCompat.getColor(getApplication(),R.color.colorDialogToolbarText));
                     tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     snackbar.show();
-                    progressBar.setVisibility(View.GONE);
-
-
                 }
 
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<WebAPIResponse<User>> call, Throwable t) {
 
                 progressBar.setVisibility(View.GONE);
                 Snackbar snackbar=Snackbar.make(findViewById(android.R.id.content), "Network Failed!", Snackbar.LENGTH_LONG);
@@ -183,9 +153,6 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
-
-
-
 
 
     private class MyTextWatcher implements TextWatcher {

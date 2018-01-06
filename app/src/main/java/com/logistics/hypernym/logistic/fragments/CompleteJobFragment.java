@@ -51,7 +51,7 @@ public class CompleteJobFragment extends Fragment {
             @Override
             public void onResponse(Call<WebAPIResponse<Respone_Completed_job>> call, Response<WebAPIResponse<Respone_Completed_job>> response) {
                 if (response.body().status){
-//                    Toast.makeText(getContext(), "Response GGetS", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "User GGetS", Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(getContext(), "List Detail"+Integer.toString(response.body().response.job_info.size()), Toast.LENGTH_SHORT).show();
 
 
