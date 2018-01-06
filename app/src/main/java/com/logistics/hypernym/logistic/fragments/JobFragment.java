@@ -19,12 +19,10 @@ import android.widget.Toast;
 
 import com.logistics.hypernym.logistic.FrameActivity;
 import com.logistics.hypernym.logistic.R;
-import com.logistics.hypernym.logistic.adapters.CompleteJobAdapter;
 import com.logistics.hypernym.logistic.api.ApiInterface;
 import com.logistics.hypernym.logistic.models.DrawerItemSelectedEvent;
 import com.logistics.hypernym.logistic.models.JobInfo_;
 import com.logistics.hypernym.logistic.models.Respone_Completed_job;
-import com.logistics.hypernym.logistic.models.User;
 import com.logistics.hypernym.logistic.models.WebAPIResponse;
 import com.logistics.hypernym.logistic.toolbox.ToolbarListener;
 import com.logistics.hypernym.logistic.utils.ActivityUtils;
@@ -47,7 +45,6 @@ public class JobFragment extends Fragment implements View.OnClickListener,Toolba
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private List<JobInfo_> jobInfo_s;
-    private User user=new User();
 
     public TextView compltd_job,faild_job;
 
@@ -96,17 +93,6 @@ public class JobFragment extends Fragment implements View.OnClickListener,Toolba
                 Toast.makeText(getContext(), "Network failure", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
-
-
-
-
-
-
-
         return view;
     }
 
