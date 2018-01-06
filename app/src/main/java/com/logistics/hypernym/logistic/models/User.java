@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by Metis on 29-Dec-17.
+ * Created by shamis on 29-Dec-17.
  */
 
 public class User {

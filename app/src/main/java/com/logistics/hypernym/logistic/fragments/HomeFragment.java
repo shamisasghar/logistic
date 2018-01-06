@@ -86,6 +86,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener,OnMap
                 @Override
                 public void onLocationChanged(Location location) {
                     LatLng pos;
+
                     Location l;
                     l = (Location) location;
                     pos = new LatLng(l.getLatitude(), l.getLongitude());
