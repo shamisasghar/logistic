@@ -1,112 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_swipe"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:id="@+id/layout1">
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:cardBackgroundColor="#fff"
-            android:layout_weight="1"
+    android:layout_height="match_parent">
 
-            android:layout_marginRight="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Completed Jobs"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#000"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#e11414"
-                android:layout_marginTop="30dp">
-            </View>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/txt_no_completed_job"
-                android:layout_gravity="center"
-                android:textColor="#000"
-                android:textSize="40dp"
-                android:textStyle="bold"/>
-
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:cardBackgroundColor="#fff"
-            android:layout_weight="1"
-            android:layout_marginLeft="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Failed Jobs"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#000"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#e11414"
-                android:layout_marginTop="30dp">
-            </View>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/txt_no_failed_job"
-                android:layout_gravity="center"
-                android:textColor="#000"
-                android:textSize="40dp"
-                android:textStyle="bold"/>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="#fff"
-        android:layout_below="@+id/layout1"
         android:orientation="vertical"
-        app:cardCornerRadius="10dp"
-        android:id="@+id/layout3"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp">
+        android:id="@+id/layout_relative_main">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:background="@color/colorPrimary"
+        <LinearLayout
+            android:id="@+id/layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabTextColor="#ffffff"
-            app:tabSelectedTextColor="#ff0000"
-            app:tabIndicatorColor="#ff0000"/>
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/container"
+            <android.support.v7.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+
+                app:cardBackgroundColor="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Completed Jobs"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#e11414"></View>
+
+                <TextView
+                    android:id="@+id/txt_no_completed_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="#000"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Failed Jobs"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#e11414"></View>
+
+                <TextView
+                    android:id="@+id/txt_no_failed_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="#000"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="48dp"/>
+            android:layout_below="@+id/layout1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="#fff"
+            app:cardCornerRadius="10dp">
 
-    </android.support.v7.widget.CardView>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:tabIndicatorColor="#ff0000"
+                app:tabSelectedTextColor="#ff0000"
+                app:tabTextColor="#ffffff" />
 
-</RelativeLayout>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="48dp" />
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

@@ -2,8 +2,14 @@ package com.logistics.hypernym.logistic.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +22,22 @@ import com.logistics.hypernym.logistic.FrameActivity;
 import com.logistics.hypernym.logistic.HomeActivity;
 import com.logistics.hypernym.logistic.LoginActivity;
 import com.logistics.hypernym.logistic.R;
+import com.logistics.hypernym.logistic.adapters.CompleteJobAdapter;
+import com.logistics.hypernym.logistic.api.ApiInterface;
 import com.logistics.hypernym.logistic.models.DrawerItemSelectedEvent;
+import com.logistics.hypernym.logistic.models.Profile;
+import com.logistics.hypernym.logistic.models.Respone_Completed_job;
+import com.logistics.hypernym.logistic.models.WebAPIResponse;
 import com.logistics.hypernym.logistic.toolbox.ToolbarListener;
 import com.logistics.hypernym.logistic.utils.ActivityUtils;
 import com.logistics.hypernym.logistic.utils.LoginUtils;
 import org.greenrobot.eventbus.EventBus;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by shamis on 14-Dec-17.
@@ -28,14 +45,15 @@ import org.greenrobot.eventbus.EventBus;
 
 public class Profile_Fragment extends Fragment implements View.OnClickListener,ToolbarListener {
     private ViewHolder mHolder;
+    TextView email,drivername,driverid;
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
-
+    private SwipeRefreshLayout swipelayout;
+    SharedPreferences pref;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
 
 
     }
@@ -48,6 +66,44 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
+        email=(TextView)view.findViewById(R.id.txt_Email);
+        drivername=(TextView)view.findViewById(R.id.txt_drivername);
+        driverid=(TextView)view.findViewById(R.id.txt_driverid);
+        swipelayout = (SwipeRefreshLayout) view.findViewById(R.id.layout_swipe);
+        pref=getActivity().getSharedPreferences("TAG", MODE_PRIVATE);
+        String gen=pref.getString("Email", "");
+        email.setText(gen);
+
+        swipelayout();
+
+        ApiInterface.retrofit.getprofile(12).enqueue(new Callback<WebAPIResponse<Profile>>() {
+            @Override
+            public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
+                if (response.body().status) {
+
+                    String driverName,driverId;
+
+                    driverName=response.body().response.getName();
+                    driverId=Integer.toString(response.body().response.getId());
+                    drivername.setText(driverName);
+                    driverid.setText(driverId);
+
+               }
+            }
+
+            @Override
+            public void onFailure(Call<WebAPIResponse<Profile>> call, Throwable t) {
+
+                Snackbar snackbar = Snackbar.make(swipelayout, "Establish Network Connection!", Snackbar.LENGTH_SHORT);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                sbView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+                textView.setTextColor(ContextCompat.getColor(getContext(), R.color.colorDialogToolbarText));
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                snackbar.show();
+            }
+        });
+
         return view;
     }
     @Override
@@ -57,14 +113,10 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
         EventBus.getDefault().post(new DrawerItemSelectedEvent(getString(R.string.drawer_profile)));
         mHolder.btn_sgnout.setOnClickListener(this);
 
-//        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-//        toolbar.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View view) {
-   //     ActivityUtils.startActivity(getActivity(), FrameActivity.class,HomeFragment.class.getName(),null);
         switch (view.getId())
         {
             case R.id.btn_signout:
@@ -92,13 +144,71 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
 
     public static class ViewHolder {
 
-
         Button btn_sgnout;
         public ViewHolder(View view) {
           btn_sgnout = (Button) view.findViewById(R.id.btn_signout);
 
         }
+    }
+
+    public void swipelayout()
+    {
+        swipelayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipelayout.setRefreshing(true);
+
+
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        swipelayout.setRefreshing(false);
+
+                        //getUserAssociatedEntity = LoginUtils.getUserAssociatedEntity(getContext());
+                        ApiInterface.retrofit.getprofile(12).enqueue(new Callback<WebAPIResponse<Profile>>() {
+                            @Override
+                            public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
+                                if (response.body().status) {
+
+                                    String driverName,driverEmail,driverId;
+
+                                    driverName=response.body().response.getName();
+                                    driverId=Integer.toString(response.body().response.getId());
+                                    drivername.setText(driverName);
+                                    driverid.setText(driverId);
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<WebAPIResponse<Profile>> call, Throwable t) {
+
+                                Snackbar snackbar = Snackbar.make(swipelayout, "Establish Network Connection!", Snackbar.LENGTH_SHORT);
+                                View sbView = snackbar.getView();
+                                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                                sbView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+                                textView.setTextColor(ContextCompat.getColor(getContext(), R.color.colorDialogToolbarText));
+                                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                snackbar.show();
+                            }
+                        });
+                    }
+                }, 3000);
+            }
+        });
+
+
+
+
+
 
     }
+
+
+
+
+
+
 }
 

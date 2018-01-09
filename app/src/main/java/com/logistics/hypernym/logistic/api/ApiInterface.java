@@ -1,5 +1,6 @@
 package com.logistics.hypernym.logistic.api;
 
+import com.logistics.hypernym.logistic.models.Profile;
 import com.logistics.hypernym.logistic.models.User;
 import com.logistics.hypernym.logistic.models.Respone_Completed_job;
 import com.logistics.hypernym.logistic.models.WebAPIResponse;
@@ -40,6 +41,9 @@ public interface ApiInterface {
 
     @GET("iof/get_app_jobs/")
     Call<WebAPIResponse<Respone_Completed_job>> getalldata(@Query("driver_id") int driver_id, @Query("status_id") int status_id);
+
+    @GET("iof/get_driver_info/")
+    Call<WebAPIResponse<Profile>> getprofile(@Query("driver_id") int driver_id);
 
     class MyOkHttpClient {
 

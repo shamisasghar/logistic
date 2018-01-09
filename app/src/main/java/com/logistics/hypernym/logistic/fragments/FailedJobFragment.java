@@ -2,6 +2,7 @@ package com.logistics.hypernym.logistic.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.logistics.hypernym.logistic.api.ApiInterface;
 import com.logistics.hypernym.logistic.models.JobInfo_;
 import com.logistics.hypernym.logistic.models.Respone_Completed_job;
 import com.logistics.hypernym.logistic.models.WebAPIResponse;
+import com.logistics.hypernym.logistic.utils.LoginUtils;
 
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class FailedJobFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private CompleteJobAdapter completeJobAdapter;
     private List<JobInfo_> jobInfo_s;
+    String getUserAssociatedEntity;
     View view;
 
     @Override
@@ -45,8 +48,8 @@ public class FailedJobFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-
-        ApiInterface.retrofit.getalldata(12,54).enqueue(new Callback<WebAPIResponse<Respone_Completed_job>>() {
+        getUserAssociatedEntity= LoginUtils.getUserAssociatedEntity(getContext());
+        ApiInterface.retrofit.getalldata(Integer.parseInt(getUserAssociatedEntity),54).enqueue(new Callback<WebAPIResponse<Respone_Completed_job>>() {
             @Override
             public void onResponse(Call<WebAPIResponse<Respone_Completed_job>> call, Response<WebAPIResponse<Respone_Completed_job>> response) {
                 if (response.body().status){
@@ -60,7 +63,6 @@ public class FailedJobFragment extends Fragment {
 
             @Override
             public void onFailure(Call<WebAPIResponse<Respone_Completed_job>> call, Throwable t) {
-                Toast.makeText(getContext(), "Network failure", Toast.LENGTH_SHORT).show();
             }
         });
 

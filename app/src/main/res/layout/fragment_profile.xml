@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_swipe"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedscrollview"
         android:layout_width="match_parent"
@@ -24,8 +28,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageview_setting"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
@@ -49,42 +53,14 @@
                 android:layout_height="2dp"
                 android:id="@+id/view1"
                 android:layout_below="@+id/txt_drivername"
-                android:background="#ff0000">
-            </View>
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:id="@+id/img_cell"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/img_cell"
-                android:layout_below="@+id/view1"
-                android:layout_centerHorizontal="true"/>
-
-            <TextView
-                android:id="@+id/txt_mobileno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/img_cell"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="Mobile No"
-                android:textColor="#000"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:id="@+id/view2"
-                android:layout_below="@+id/txt_mobileno"
-                android:background="#ff0000">
+                android:background="#000000">
             </View>
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:id="@+id/img_email"
-                android:layout_below="@+id/view2"
+                android:layout_below="@+id/view1"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/img_email"/>
@@ -107,7 +83,7 @@
                 android:layout_height="2dp"
                 android:id="@+id/view3"
                 android:layout_below="@+id/txt_Email"
-                android:background="#ff0000">
+                android:background="#000000">
             </View>
 
             <ImageView
@@ -120,7 +96,7 @@
                 android:layout_centerHorizontal="true"/>
 
             <TextView
-                android:id="@+id/txt_password"
+                android:id="@+id/txt_driverid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/img_driver_id"
@@ -134,8 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:id="@+id/view4"
-                android:layout_below="@+id/txt_password"
-                android:background="#ff0000">
+                android:layout_below="@+id/txt_driverid"
+                android:background="#000000">
             </View>
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
@@ -154,5 +130,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

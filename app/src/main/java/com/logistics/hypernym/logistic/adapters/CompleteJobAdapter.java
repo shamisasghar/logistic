@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.logistics.hypernym.logistic.R;
-import com.logistics.hypernym.logistic.models.CompletedJobData;
 import com.logistics.hypernym.logistic.models.JobInfo_;
 
 import java.util.List;
