@@ -3,6 +3,7 @@ package com.logistics.hypernym.logistic;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -15,6 +16,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,8 @@ import com.logistics.hypernym.logistic.utils.LoginUtils;
 
 import java.util.HashMap;
 
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,11 +41,13 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     Button btn_sign;
-    private TextInputEditText edit_username, edit_password;
+    private EditText edit_username, edit_password;
     private TextInputLayout inputLayout_username,inputLayout_password;
     SharedPreferences sharedpreferences;
     private ProgressBar progressBar;
     SharedPreferences pref;
+    BlurView mBlurView;
+    private final float mRadius = 1;
     String user;
     SharedPreferences.Editor editor;
     @Override
@@ -50,13 +56,24 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         btn_sign = (Button) findViewById(R.id.sign_in);
-        edit_username = (TextInputEditText) findViewById(R.id.edittext_username);
-        edit_password = (TextInputEditText) findViewById(R.id.edittext_password);
+        edit_username = (EditText) findViewById(R.id.edittext_username);
+        edit_password = (EditText) findViewById(R.id.edittext_password);
         inputLayout_username = (TextInputLayout) findViewById(R.id.input_layout_username);
         inputLayout_password = (TextInputLayout) findViewById(R.id.input_layout_password);
         edit_username.addTextChangedListener(new MyTextWatcher(edit_username));
         edit_password.addTextChangedListener(new MyTextWatcher(edit_password));
         progressBar = (ProgressBar)findViewById(R.id.spin_kit);
+        mBlurView = (BlurView) findViewById(R.id.blurView);
+//        final View decorView = getWindow().getDecorView();
+//
+//        final View rootView = decorView.findViewById(android.R.id.content);
+//        //set background, if your root layout doesn't have one
+//        final Drawable
+//                windowBackground = decorView.getBackground();
+//        mBlurView.setupWith(rootView)
+//                .windowBackground(windowBackground)
+//                .blurAlgorithm(new RenderScriptBlur(this, true)) //Preferable algorithm, needs RenderScript support mode enabled
+//                .blurRadius(mRadius);
         progressBar.setVisibility(View.GONE);
 
         pref = getApplicationContext().getSharedPreferences("TAG", MODE_PRIVATE);

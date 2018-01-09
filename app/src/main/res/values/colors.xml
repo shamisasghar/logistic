@@ -161,4 +161,6 @@
 
     <!-- Overlay -->
     <color name="bright_overlay">#21ffffff</color>
+    <color name="color_login_area">#6cffffff</color>
+
 </resources>

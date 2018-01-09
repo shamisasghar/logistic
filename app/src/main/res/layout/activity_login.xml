@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/turck_img"
     tools:context="com.logistics.hypernym.logistic.HomeActivity"
     android:gravity="center">
+
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:blurOverlayColor="@color/colorDrawerBG">
+
+    </eightbitlab.com.blurview.BlurView>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -13,6 +23,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:padding="20dp">
 
 
@@ -25,14 +37,16 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:id="@+id/input_layout_username"
-                android:layout_height="wrap_content">
-
-                <android.support.design.widget.TextInputEditText
+                android:layout_height="wrap_content"
+                android:background="@color/color_login_area"
+                android:textColorHint="#000000">
+                <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/username"
                     android:singleLine="true"
                     android:hint="Email"
+                    android:textColor="#ffffff"
                     android:imeOptions="actionNext"
                     android:textSize="15sp"
                     android:textAllCaps="true"
@@ -44,12 +58,15 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:id="@+id/input_layout_password"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/color_login_area"
+                android:textColorHint="#000000">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:textColor="#ffffff"
                     android:singleLine="true"
                     android:id="@+id/edittext_password"
                     android:drawableLeft="@drawable/password"
@@ -68,7 +85,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_black"
+                android:background="@color/color_login_area"
                 android:text="SIGN IN"
                 android:layout_marginTop="10dp"
                 android:textAllCaps="false"
@@ -91,11 +108,13 @@
 
     <ImageView
         android:id="@+id/user_profile_photo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="140dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-80dp"
-        android:src="@drawable/man"/>
+        android:layout_marginTop="40dp"
+        android:src="@drawable/login_logo"
+        android:tint="@color/colorPrimaryDark"/>
+
 
 
 </RelativeLayout>

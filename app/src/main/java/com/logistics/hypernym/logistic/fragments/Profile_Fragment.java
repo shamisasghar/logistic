@@ -31,6 +31,7 @@ import com.logistics.hypernym.logistic.models.WebAPIResponse;
 import com.logistics.hypernym.logistic.toolbox.ToolbarListener;
 import com.logistics.hypernym.logistic.utils.ActivityUtils;
 import com.logistics.hypernym.logistic.utils.LoginUtils;
+
 import org.greenrobot.eventbus.EventBus;
 
 import retrofit2.Call;
@@ -43,13 +44,15 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by shamis on 14-Dec-17.
  */
 
-public class Profile_Fragment extends Fragment implements View.OnClickListener,ToolbarListener {
+public class Profile_Fragment extends Fragment implements View.OnClickListener, ToolbarListener {
     private ViewHolder mHolder;
-    TextView email,drivername,driverid;
+    TextView email, drivername, driverid;
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
     private SwipeRefreshLayout swipelayout;
     SharedPreferences pref;
+    String getUserAssociatedEntity;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
 
 
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -64,14 +68,15 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
             ((ToolbarListener) context).setTitle("Profile");
         }
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_profile, container, false);
-        email=(TextView)view.findViewById(R.id.txt_Email);
-        drivername=(TextView)view.findViewById(R.id.txt_drivername);
-        driverid=(TextView)view.findViewById(R.id.txt_driverid);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        email = (TextView) view.findViewById(R.id.txt_Email);
+        drivername = (TextView) view.findViewById(R.id.txt_drivername);
+        driverid = (TextView) view.findViewById(R.id.txt_driverid);
         swipelayout = (SwipeRefreshLayout) view.findViewById(R.id.layout_swipe);
-        pref=getActivity().getSharedPreferences("TAG", MODE_PRIVATE);
-        String gen=pref.getString("Email", "");
+        pref = getActivity().getSharedPreferences("TAG", MODE_PRIVATE);
+        String gen = pref.getString("Email", "");
         email.setText(gen);
 
         swipelayout();
@@ -81,14 +86,16 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
             public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
                 if (response.body().status) {
 
-                    String driverName,driverId;
+                    String driverName, driverId,driverEmail;
 
-                    driverName=response.body().response.getName();
-                    driverId=Integer.toString(response.body().response.getId());
+                    driverName = response.body().response.getName();
+                    driverId = Integer.toString(response.body().response.getId());
                     drivername.setText(driverName);
                     driverid.setText(driverId);
+                    driverEmail=response.body().response.getPhoto();
+                    Toast.makeText(getContext(),driverEmail, Toast.LENGTH_SHORT).show();
 
-               }
+                }
             }
 
             @Override
@@ -106,6 +113,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
 
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -117,11 +125,10 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.btn_signout:
                 LoginUtils.clearUser(getContext());
-                startActivity(new Intent(this.getContext(),LoginActivity.class));
+                startActivity(new Intent(this.getContext(), LoginActivity.class));
                 getActivity().finish();
                 break;
         }
@@ -145,14 +152,14 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
     public static class ViewHolder {
 
         Button btn_sgnout;
+
         public ViewHolder(View view) {
-          btn_sgnout = (Button) view.findViewById(R.id.btn_signout);
+            btn_sgnout = (Button) view.findViewById(R.id.btn_signout);
 
         }
     }
 
-    public void swipelayout()
-    {
+    public void swipelayout() {
         swipelayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -165,18 +172,20 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
 
                         swipelayout.setRefreshing(false);
 
-                        //getUserAssociatedEntity = LoginUtils.getUserAssociatedEntity(getContext());
-                        ApiInterface.retrofit.getprofile(12).enqueue(new Callback<WebAPIResponse<Profile>>() {
+                        getUserAssociatedEntity = LoginUtils.getUserAssociatedEntity(getContext());
+                        ApiInterface.retrofit.getprofile(Integer.parseInt(getUserAssociatedEntity)).enqueue(new Callback<WebAPIResponse<Profile>>() {
                             @Override
                             public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
                                 if (response.body().status) {
 
-                                    String driverName,driverEmail,driverId;
+                                    String driverName, driverEmail, driverId;
 
-                                    driverName=response.body().response.getName();
-                                    driverId=Integer.toString(response.body().response.getId());
+                                    driverName = response.body().response.getName();
+                                    driverId = Integer.toString(response.body().response.getId());
                                     drivername.setText(driverName);
                                     driverid.setText(driverId);
+                                    driverEmail=response.body().response.getPhoto();
+                                    Toast.makeText(getContext(),driverEmail, Toast.LENGTH_SHORT).show();
 
                                 }
                             }
@@ -199,15 +208,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener,T
         });
 
 
-
-
-
-
     }
-
-
-
-
 
 
 }
