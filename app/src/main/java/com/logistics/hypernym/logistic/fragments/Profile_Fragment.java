@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -15,9 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.logistics.hypernym.logistic.FrameActivity;
 import com.logistics.hypernym.logistic.HomeActivity;
 import com.logistics.hypernym.logistic.LoginActivity;
@@ -34,6 +37,7 @@ import com.logistics.hypernym.logistic.utils.LoginUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,6 +56,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
     private SwipeRefreshLayout swipelayout;
     SharedPreferences pref;
     String getUserAssociatedEntity;
+    CircleImageView img_profile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
         email = (TextView) view.findViewById(R.id.txt_Email);
         drivername = (TextView) view.findViewById(R.id.txt_drivername);
         driverid = (TextView) view.findViewById(R.id.txt_driverid);
+        img_profile=(CircleImageView) view.findViewById(R.id.img_driver_profile);
         swipelayout = (SwipeRefreshLayout) view.findViewById(R.id.layout_swipe);
         pref = getActivity().getSharedPreferences("TAG", MODE_PRIVATE);
         String gen = pref.getString("Email", "");
@@ -86,15 +92,13 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
             public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
                 if (response.body().status) {
 
-                    String driverName, driverId,driverEmail;
-
+                    String driverName, driverId;
+                    String url=response.body().response.getPhoto();
                     driverName = response.body().response.getName();
                     driverId = Integer.toString(response.body().response.getId());
                     drivername.setText(driverName);
                     driverid.setText(driverId);
-                    driverEmail=response.body().response.getPhoto();
-                    Toast.makeText(getContext(),driverEmail, Toast.LENGTH_SHORT).show();
-
+                    Glide.with(getContext()).load(url).into(img_profile);
                 }
             }
 
@@ -178,14 +182,14 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
                             public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
                                 if (response.body().status) {
 
-                                    String driverName, driverEmail, driverId;
+                                    String driverName,driverId;
 
                                     driverName = response.body().response.getName();
                                     driverId = Integer.toString(response.body().response.getId());
+                                    String url=response.body().response.getPhoto();
                                     drivername.setText(driverName);
                                     driverid.setText(driverId);
-                                    driverEmail=response.body().response.getPhoto();
-                                    Toast.makeText(getContext(),driverEmail, Toast.LENGTH_SHORT).show();
+                                    Glide.with(getContext()).load(url).into(img_profile);
 
                                 }
                             }

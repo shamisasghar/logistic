@@ -27,7 +27,7 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageview_setting"
+                android:id="@+id/img_driver_profile"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_alignParentTop="true"
@@ -41,7 +41,7 @@
                 android:id="@+id/txt_drivername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imageview_setting"
+                android:layout_below="@+id/img_driver_profile"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:text="Driver Name"

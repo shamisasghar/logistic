@@ -65,8 +65,8 @@ public class CompleteJobFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<WebAPIResponse<Respone_Completed_job>> call, Throwable t) {
-            }
+            public void onFailure(Call<WebAPIResponse<Respone_Completed_job>> call, Throwable t)
+            {}
         });
 
 
