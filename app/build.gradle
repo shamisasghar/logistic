@@ -1,3 +1,12 @@
+plugins {
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin' version '0.8.0'
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+repositories {
+    maven { url 'https://maven.google.com' }
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -12,6 +21,9 @@ android {
         vectorDrawables.useSupportLibrary = true
         renderscriptTargetApi 25
         renderscriptSupportModeEnabled true
+        manifestPlaceholders = [onesignal_app_id: "0a601fa9-2ce0-4f3a-a5be-d30dc73057a4",
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "REMOTE"]
     }
     buildTypes {
         release {
@@ -45,6 +57,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:8.4.0'
     compile 'com.eightbitlab:blurview:1.2.0'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.onesignal:OneSignal:[3.6.5, 3.99.99]'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
