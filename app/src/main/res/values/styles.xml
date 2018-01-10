@@ -5,7 +5,17 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorwhite</item>
+    </style>
+    <style name="TextInputLayout" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/colorwhite</item>
+        <item name="android:textSize">@dimen/textinput</item>
+
+
+    </style>
+
+    <style name="ErrorLayout" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/colorwhite</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

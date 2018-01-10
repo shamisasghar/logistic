@@ -1,14 +1,18 @@
 package com.logistics.hypernym.logistic.adapters;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.logistics.hypernym.logistic.R;
 import com.logistics.hypernym.logistic.models.JobInfo_;
+import com.logistics.hypernym.logistic.utils.AppUtils;
 
 import java.util.List;
 
@@ -18,6 +22,7 @@ import java.util.List;
 
 public class CompleteJobAdapter extends RecyclerView.Adapter<CompleteJobAdapter.MyViewHolder> {
     private List<JobInfo_> jobInfo_s;
+    Context context;
 
 
     public CompleteJobAdapter(List<JobInfo_> jobInfo_s)
@@ -29,6 +34,10 @@ public class CompleteJobAdapter extends RecyclerView.Adapter<CompleteJobAdapter.
     @Override
     public CompleteJobAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_complete_job, parent, false);
+
+
+
+
        return new MyViewHolder(view);
     }
 
@@ -37,8 +46,9 @@ public class CompleteJobAdapter extends RecyclerView.Adapter<CompleteJobAdapter.
 
         holder.jobname.setText(jobInfo_s.get(position).getJob_name());
         holder.jobstatus.setText(jobInfo_s.get(position).getJob_status());
-        holder.starttime.setText(jobInfo_s.get(position).getJob_start_time());
-        holder.endtime.setText(jobInfo_s.get(position).getJob_end_time());
+        holder.starttime.setText(AppUtils.getFormattedDate(jobInfo_s.get(position).getJob_start_time())+" "+AppUtils.getTime(jobInfo_s.get(position).getJob_start_time()));
+        holder.endtime.setText(AppUtils.getTime(jobInfo_s.get(position).getJob_end_time()));
+
 
 
     }

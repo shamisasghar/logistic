@@ -55,7 +55,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
     private TextView mToolbarTitle;
     private SwipeRefreshLayout swipelayout;
     SharedPreferences pref;
-    String getUserAssociatedEntity;
+    String getUserAssociatedEntity,Email,Driver_name,Driver_id,Driver_photo;
     CircleImageView img_profile;
 
     @Override
@@ -82,38 +82,45 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
         img_profile=(CircleImageView) view.findViewById(R.id.img_driver_profile);
         swipelayout = (SwipeRefreshLayout) view.findViewById(R.id.layout_swipe);
         pref = getActivity().getSharedPreferences("TAG", MODE_PRIVATE);
-        String gen = pref.getString("Email", "");
-        email.setText(gen);
+         Email = pref.getString("Email", "");
+        Driver_photo = pref.getString("Url", "");
+        Driver_name = pref.getString("Name", "");
+        Driver_id = pref.getString("Id", "");
+        email.setText(Email);
+        Glide.with(getContext()).load(Driver_photo).into(img_profile);
+        drivername.setText(Driver_name);
+        driverid.setText(Driver_id);
+
 
         swipelayout();
 
-        ApiInterface.retrofit.getprofile(12).enqueue(new Callback<WebAPIResponse<Profile>>() {
-            @Override
-            public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
-                if (response.body().status) {
-
-                    String driverName, driverId;
-                    String url=response.body().response.getPhoto();
-                    driverName = response.body().response.getName();
-                    driverId = Integer.toString(response.body().response.getId());
-                    drivername.setText(driverName);
-                    driverid.setText(driverId);
-                    Glide.with(getContext()).load(url).into(img_profile);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<WebAPIResponse<Profile>> call, Throwable t) {
-
-                Snackbar snackbar = Snackbar.make(swipelayout, "Establish Network Connection!", Snackbar.LENGTH_SHORT);
-                View sbView = snackbar.getView();
-                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                sbView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
-                textView.setTextColor(ContextCompat.getColor(getContext(), R.color.colorDialogToolbarText));
-                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                snackbar.show();
-            }
-        });
+//        ApiInterface.retrofit.getprofile(12).enqueue(new Callback<WebAPIResponse<Profile>>() {
+//            @Override
+//            public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
+//                if (response.body().status) {
+//
+//                    String driverName, driverId;
+//                    String url=response.body().response.getPhoto();
+//                    driverName = response.body().response.getName();
+//                    driverId = Integer.toString(response.body().response.getId());
+//                    drivername.setText(driverName);
+//                    driverid.setText(driverId);
+//                    Glide.with(getContext()).load(url).into(img_profile);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<WebAPIResponse<Profile>> call, Throwable t) {
+//
+//                Snackbar snackbar = Snackbar.make(swipelayout, "Establish Network Connection!", Snackbar.LENGTH_SHORT);
+//                View sbView = snackbar.getView();
+//                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+//                sbView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+//                textView.setTextColor(ContextCompat.getColor(getContext(), R.color.colorDialogToolbarText));
+//                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//                snackbar.show();
+//            }
+//        });
 
         return view;
     }

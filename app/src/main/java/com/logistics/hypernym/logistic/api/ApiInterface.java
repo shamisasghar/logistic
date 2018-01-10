@@ -37,7 +37,7 @@ public interface ApiInterface {
     ApiInterface retrofit = builder.build().create(ApiInterface.class);
 
     @POST("api/users/login/")
-    Call<WebAPIResponse<User>> loginUser(@Body HashMap<String, Object> body);
+    Call<WebAPIResponse<User>> loginUser(@Body HashMap<String,Object> body);
 
     @GET("iof/get_app_jobs/")
     Call<WebAPIResponse<Respone_Completed_job>> getalldata(@Query("driver_id") int driver_id, @Query("status_id") int status_id);

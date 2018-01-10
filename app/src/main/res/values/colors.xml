@@ -4,6 +4,9 @@
     <color name="colorPrimary">#1976d2</color>
     <color name="colorPrimarylight">#63a4ff</color>
     <color name="colorPrimaryDark">#004ba0</color>
+    <color name="colorwhite">#e0e0e0</color>
+    <color name="colorerror">#0044FF</color>
+
     <color name="colorAccent">#000000</color> <!-- ok Only used in styles.xml -->
     <color name="colorMain">#c82209</color>
     <!--App Background-->
@@ -161,6 +164,7 @@
 
     <!-- Overlay -->
     <color name="bright_overlay">#21ffffff</color>
-    <color name="color_login_area">#6cffffff</color>
+    <color name="color_login_area">#6b004ba0</color>
+    <color name="color_button">#89ffffff</color>
 
 </resources>

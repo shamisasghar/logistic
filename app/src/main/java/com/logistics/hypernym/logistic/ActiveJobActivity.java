@@ -65,6 +65,7 @@ public class ActiveJobActivity extends AppCompatActivity {
         swipeButton.addOnSwipeCallback(new SwipeButton.Swipe() {
             @Override
             public void onButtonPress() {
+
             }
 
             @Override
