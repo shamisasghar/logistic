@@ -1,7 +1,7 @@
 package com.logistics.hypernym.logistic.models;
 
 /**
- * Created by Metis on 04-Jan-18.
+ * Created by shamis on 04-Jan-18.
  */
 
 public class WebAPIResponse<T> {

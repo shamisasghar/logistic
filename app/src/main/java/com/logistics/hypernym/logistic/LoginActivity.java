@@ -28,7 +28,9 @@ import com.logistics.hypernym.logistic.fragments.Profile_Fragment;
 import com.logistics.hypernym.logistic.models.Profile;
 import com.logistics.hypernym.logistic.models.User;
 import com.logistics.hypernym.logistic.models.WebAPIResponse;
+import com.logistics.hypernym.logistic.utils.AppUtils;
 import com.logistics.hypernym.logistic.utils.LoginUtils;
+import com.logistics.hypernym.logistic.utils.ScheduleUtils;
 
 import java.util.HashMap;
 
@@ -52,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     BlurView mBlurView;
     private final float mRadius = 1;
 
-    String email, driver_name, driver_id, url;
+    String email, driver_name, driver_id, url,getUserAssociatedEntity;
     SharedPreferences.Editor editor;
 
     @Override
@@ -109,10 +111,12 @@ public class LoginActivity extends AppCompatActivity {
 
         String username = edit_username.getText().toString(); //    "driver1@kotal.com"
         String password = edit_password.getText().toString();//    "driver@2017"
+
         HashMap<String, Object> body = new HashMap<>();
         body.put("email",username);
         body.put("password",password);
-
+        body.put("push_key", ScheduleUtils.getUserOneSignalId(this));
+        getUserAssociatedEntity=LoginUtils.getUserAssociatedEntity(this);
         ApiInterface.retrofit.loginUser(body).enqueue(new Callback<WebAPIResponse<User>>() {
             @Override
             public void onResponse(Call<WebAPIResponse<User>> call, Response<WebAPIResponse<User>> response) {
@@ -125,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginUtils.userLoggedIn(LoginActivity.this);
 
 
-                    ApiInterface.retrofit.getprofile(12).enqueue(new Callback<WebAPIResponse<Profile>>() {
+                    ApiInterface.retrofit.getprofile(Integer.parseInt(getUserAssociatedEntity)).enqueue(new Callback<WebAPIResponse<Profile>>() {
                         @Override
                         public void onResponse(Call<WebAPIResponse<Profile>> call, Response<WebAPIResponse<Profile>> response) {
                             if (response.body().status) {

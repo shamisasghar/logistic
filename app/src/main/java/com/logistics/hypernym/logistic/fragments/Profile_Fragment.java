@@ -62,8 +62,6 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-
     }
 
     @Override
@@ -82,7 +80,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
         img_profile=(CircleImageView) view.findViewById(R.id.img_driver_profile);
         swipelayout = (SwipeRefreshLayout) view.findViewById(R.id.layout_swipe);
         pref = getActivity().getSharedPreferences("TAG", MODE_PRIVATE);
-         Email = pref.getString("Email", "");
+        Email = pref.getString("Email", "");
         Driver_photo = pref.getString("Url", "");
         Driver_name = pref.getString("Name", "");
         Driver_id = pref.getString("Id", "");
@@ -90,8 +88,6 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
         Glide.with(getContext()).load(Driver_photo).into(img_profile);
         drivername.setText(Driver_name);
         driverid.setText(Driver_id);
-
-
         swipelayout();
 
 //        ApiInterface.retrofit.getprofile(12).enqueue(new Callback<WebAPIResponse<Profile>>() {

@@ -1,7 +1,7 @@
 package com.logistics.hypernym.logistic.models;
 
 /**
-  Created by Metis on 08-Jan-18.**/
+  Created by shamis on 08-Jan-18.**/
 
         import com.google.gson.annotations.Expose;
         import com.google.gson.annotations.SerializedName;
