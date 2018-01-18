@@ -101,6 +101,14 @@ public class ActiveJobActivity extends AppCompatActivity implements View.OnClick
         digitSpeedView = (DigitSpeedView) findViewById(R.id.digit_speed_view1);
         strttime=(TextView)findViewById(R.id.txt_starttime);
         endtime=(TextView)findViewById(R.id.txt_jobendtime);
+        actual_start=(TextView)findViewById(R.id.txt_actual_time);
+
+
+        actual_start.setText(pref.getString("Actualstart", ""));
+        strttime.setText(pref.getString("Startjob", ""));
+        endtime.setText(pref.getString("Startend", ""));
+
+
         dig_dis=(TextView)findViewById(R.id.txt_dialog_actualend);
         dig_vol=(TextView)findViewById(R.id.txt_dialog_actualend);
 
@@ -176,6 +184,8 @@ public class ActiveJobActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onResponse(Call<WebAPIResponse<JobEnd>> call, Response<WebAPIResponse<JobEnd>> response) {
 //                        if (response.body().status) {
+
+
 //                    }
                     }
                     @Override

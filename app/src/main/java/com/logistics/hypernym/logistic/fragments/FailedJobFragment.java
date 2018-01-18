@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.logistics.hypernym.logistic.R;
 import com.logistics.hypernym.logistic.adapters.CompleteJobAdapter;
+import com.logistics.hypernym.logistic.adapters.FailedJobAdapter;
 import com.logistics.hypernym.logistic.api.ApiInterface;
 import com.logistics.hypernym.logistic.models.JobInfo_;
 import com.logistics.hypernym.logistic.models.Respone_Completed_job;
@@ -34,7 +35,7 @@ public class FailedJobFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private CompleteJobAdapter completeJobAdapter;
+    private FailedJobAdapter failedJobAdapter;
     private List<JobInfo_> jobInfo_s;
     String getUserAssociatedEntity;
     View view;
@@ -53,11 +54,11 @@ public class FailedJobFragment extends Fragment {
             @Override
             public void onResponse(Call<WebAPIResponse<Respone_Completed_job>> call, Response<WebAPIResponse<Respone_Completed_job>> response) {
                 if (response.body().status){
-           //        Toast.makeText(getContext(), "List Detail"+Integer.toString(response.body().response.job_info.size()), Toast.LENGTH_SHORT).show();
-                    jobInfo_s=response.body().response.job_info;
 
-                    completeJobAdapter=new CompleteJobAdapter(jobInfo_s);
-                    recyclerView.setAdapter(completeJobAdapter);
+                   Toast.makeText(getContext(), "List Detail"+Integer.toString(response.body().response.job_info.size()), Toast.LENGTH_SHORT).show();
+                    jobInfo_s=response.body().response.job_info;
+                    failedJobAdapter=new FailedJobAdapter(jobInfo_s);
+                    recyclerView.setAdapter(failedJobAdapter);
                 }
             }
 

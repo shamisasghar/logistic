@@ -44,6 +44,7 @@ public class CompleteJobAdapter extends RecyclerView.Adapter<CompleteJobAdapter.
         holder.jobstatus.setText(jobInfo_s.get(position).getJob_status());
         holder.starttime.setText(AppUtils.getFormattedDate(jobInfo_s.get(position).getJob_start_time())+" "+AppUtils.getTime(jobInfo_s.get(position).getJob_start_time()));
         holder.endtime.setText(AppUtils.getTime(jobInfo_s.get(position).getJob_end_time()));
+      //  holder.compled_job.setText(jobInfo_s.size());
 
 
 
@@ -64,7 +65,7 @@ public class CompleteJobAdapter extends RecyclerView.Adapter<CompleteJobAdapter.
             jobstatus = (TextView) itemView.findViewById(R.id.txt_jobstatus);
             starttime = (TextView) itemView.findViewById(R.id.txt_starttime);
             endtime = (TextView) itemView.findViewById(R.id.txt_endtime);
-         //   compled_job = (TextView) itemView.findViewById(R.id.txt_no_completed_job);
+           compled_job = (TextView) itemView.findViewById(R.id.txt_no_completed_job);
 
         }
     }

@@ -81,6 +81,9 @@ public class FrameActivity extends AppCompatActivity implements ToolbarListener 
     @Override
     public void onBackPressed() {
         if (isTaskRoot()) {
+            Intent intent = new Intent(FrameActivity.this, HomeActivity.class);
+            startActivity(intent);
+            FrameActivity.this.finish();
 //            ActivityUtils.startHomeActivity(this, HomeActivity.class, CategoriesFragment.class.getName());
         }
         else {

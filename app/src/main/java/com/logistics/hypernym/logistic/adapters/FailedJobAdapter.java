@@ -27,7 +27,7 @@ public class FailedJobAdapter extends RecyclerView.Adapter<FailedJobAdapter.MyVi
 
     @Override
     public FailedJobAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_complete_job, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_failed_job, parent, false);
         return new FailedJobAdapter.MyViewHolder(view);
     }
 
@@ -38,6 +38,7 @@ public class FailedJobAdapter extends RecyclerView.Adapter<FailedJobAdapter.MyVi
         holder.jobstatus.setText(jobInfo_s.get(position).getJob_status());
         holder.starttime.setText(jobInfo_s.get(position).getJob_start_time());
         holder.endtime.setText(jobInfo_s.get(position).getJob_end_time());
+       // holder.failed_job.setText(jobInfo_s.size());
 
 
     }
@@ -48,7 +49,7 @@ public class FailedJobAdapter extends RecyclerView.Adapter<FailedJobAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView jobname, jobstatus, starttime, endtime,compled_job;
+        TextView jobname, jobstatus, starttime, endtime,failed_job;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -57,7 +58,7 @@ public class FailedJobAdapter extends RecyclerView.Adapter<FailedJobAdapter.MyVi
             jobstatus = (TextView) itemView.findViewById(R.id.txt_jobstatus);
             starttime = (TextView) itemView.findViewById(R.id.txt_starttime);
             endtime = (TextView) itemView.findViewById(R.id.txt_endtime);
-            //   compled_job = (TextView) itemView.findViewById(R.id.txt_no_completed_job);
+              failed_job = (TextView) itemView.findViewById(R.id.txt_no_failed_job);
 
         }
     }

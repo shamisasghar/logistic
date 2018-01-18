@@ -81,10 +81,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener,OnMap
 
                     Location l = (Location) location;
                     pos = new LatLng(l.getLatitude(), l.getLongitude());
-                    if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    }
-
                     if (l!=null){
                         googleMap.setMyLocationEnabled(true);
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos,18.4f));
