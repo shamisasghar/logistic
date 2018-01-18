@@ -80,6 +80,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener, 
         img_profile=(CircleImageView) view.findViewById(R.id.img_driver_profile);
         swipelayout = (SwipeRefreshLayout) view.findViewById(R.id.layout_swipe);
         pref = getActivity().getSharedPreferences("TAG", MODE_PRIVATE);
+
         Email = pref.getString("Email", "");
         Driver_photo = pref.getString("Url", "");
         Driver_name = pref.getString("Name", "");

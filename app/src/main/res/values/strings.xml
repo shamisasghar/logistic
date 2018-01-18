@@ -41,6 +41,7 @@
 <string name="msg_user_not_log_in">Please Login</string>
 <string name="msg_logout">Are you sure you want to logout?</string>
 <string name="msg_exit">Are you sure you want to exit?</string>
+    <string name="msg_end_job">Do you want to end this job?</string>
 <string name="msg_cart_empty">Your cart is empty</string>
 <string name="msg_order_proceed">Please wait while we verify your order</string>
 <string name="msg_item_detail">ITEM DETAILS</string>

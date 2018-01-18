@@ -257,7 +257,7 @@ public class AppUtils {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 
-    public static void makeNotification(Context context, Class<?> class_, String fragmentName, Bundle bundle, String message, boolean isUpdateCurrent, int requestCode) {
+    public static void makeNotification(Context context, Class<?> class_, String fragmentName, Bundle bundle, String title, boolean isUpdateCurrent, int requestCode) {
         Intent intent = new Intent(context, class_);
         if (isUpdateCurrent) {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -265,21 +265,19 @@ public class AppUtils {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         intent.putExtra(Constants.FRAGMENT_NAME, fragmentName);
+
         intent.putExtra(Constants.DATA, bundle);
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT
-        );
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = new NotificationCompat.Builder(context)
                 .setSmallIcon(getNotificationIcon())
-                .setTicker(message)
+                .setTicker(title)
                 .setColor(ContextCompat.getColor(context, R.color.colorNotificationIcon))
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentTitle(context.getString(R.string.app_name))
-                .setContentText(message)
+                .setContentText(title)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText(message))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(title))
                 .build();
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(requestCode, notification);

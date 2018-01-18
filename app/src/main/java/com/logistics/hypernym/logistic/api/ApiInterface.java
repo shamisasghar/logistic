@@ -1,6 +1,9 @@
 package com.logistics.hypernym.logistic.api;
 
+import com.logistics.hypernym.logistic.models.JobDetail;
+import com.logistics.hypernym.logistic.models.JobEnd;
 import com.logistics.hypernym.logistic.models.Profile;
+import com.logistics.hypernym.logistic.models.StartJob;
 import com.logistics.hypernym.logistic.models.User;
 import com.logistics.hypernym.logistic.models.Respone_Completed_job;
 import com.logistics.hypernym.logistic.models.WebAPIResponse;
@@ -20,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 /**
@@ -45,6 +49,14 @@ public interface ApiInterface {
     @GET("iof/get_driver_info/")
     Call<WebAPIResponse<Profile>> getprofile(@Query("driver_id") int driver_id);
 
+    @GET("iof/get_app_jobs/")
+    Call<WebAPIResponse<JobDetail>> getalldata(@Query("job_id") int job_id);
+
+    @PUT("iof/driver_job_update")
+    Call<WebAPIResponse<StartJob>> startjob(@Body HashMap<String,Object> body);
+
+    @PUT("iof/driver_job_update")
+    Call<WebAPIResponse<JobEnd>> endjob(@Body HashMap<String,Object> body);
     class MyOkHttpClient {
 
 

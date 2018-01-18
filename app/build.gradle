@@ -55,6 +55,7 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.2.1'
     testImplementation 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services:9.8.0'
+    compile 'com.firebaseui:firebase-ui-auth:3.1.0'
     compile 'com.eightbitlab:blurview:1.2.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.onesignal:OneSignal:[3.6.5, 3.99.99]'

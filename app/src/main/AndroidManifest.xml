@@ -41,6 +41,18 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCF9QY_a8M63ET7cgi8HhaZY1FrS9OxwOI" />
 
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
+
+        <service
+            android:name="com.logistics.hypernym.logistic.service.OneSignalReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.onesignal.NotificationExtender" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait"
@@ -50,18 +62,6 @@
             android:name=".FrameActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".JobNotifyActivity"
-            android:screenOrientation="portrait"
-            android:label="Notification"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity
-            android:name=".JobDetailActivity"
-            android:screenOrientation="portrait"
-            android:label="Notification"
-            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".ActiveJobActivity"

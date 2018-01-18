@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.logistics.hypernym.logistic.dialogs.SimpleDialog;
 import com.logistics.hypernym.logistic.fragments.JobFragment;
+import com.logistics.hypernym.logistic.fragments.JobNoticationFragment;
 import com.logistics.hypernym.logistic.toolbox.ToolbarListener;
 import com.logistics.hypernym.logistic.utils.ActivityUtils;
 import com.logistics.hypernym.logistic.utils.Constants;
@@ -60,7 +61,7 @@ public class FrameActivity extends AppCompatActivity implements ToolbarListener 
 
     public void toolbarSetup()
     {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar)findViewById(R.id.toolbar);
         mToolbar.setTitle(" ");
         ActivityUtils.centerToolbarTitle(mToolbar,true);
         setSupportActionBar(mToolbar);
@@ -88,12 +89,12 @@ public class FrameActivity extends AppCompatActivity implements ToolbarListener 
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
 //
 //        View view = menu.findItem(R.id.action_cart).getActionView();
 //        mNumberOfCartItemsText = (TextView) view.findViewById(R.id.text_number_of_cart_items);
@@ -125,9 +126,8 @@ public class FrameActivity extends AppCompatActivity implements ToolbarListener 
                 // app icon in action bar clicked; goto parent activity.
                 onBackPressed();
                 return true;
-
             case R.id.notification_bell:
-                startActivity(new Intent(this,JobNotifyActivity.class));
+                startActivity(new Intent(this,JobNoticationFragment.class));
                 finish();
               //  ActivityUtils.startActivity(this.getApplicationContext(), FrameActivity.class,JobNotifyActivity.class.getName(),null);
                   return true;

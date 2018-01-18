@@ -51,11 +51,12 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     private ProgressBar progressBar;
     SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     BlurView mBlurView;
     private final float mRadius = 1;
 
     String email, driver_name, driver_id, url,getUserAssociatedEntity;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

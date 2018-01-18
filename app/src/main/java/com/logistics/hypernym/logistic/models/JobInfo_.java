@@ -9,6 +9,7 @@ public class JobInfo_ {
     public String job_name;
     public String job_status;
     public String job_start_time;
+    public String job_end_time;
 
     public String getJob_name() {
         return job_name;
@@ -42,5 +43,5 @@ public class JobInfo_ {
         this.job_end_time = job_end_time;
     }
 
-    public String job_end_time;
+
 }

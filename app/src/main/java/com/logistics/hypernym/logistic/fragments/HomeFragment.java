@@ -1,8 +1,6 @@
 package com.logistics.hypernym.logistic.fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,21 +19,14 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.logistics.hypernym.logistic.FrameActivity;
-import com.logistics.hypernym.logistic.JobNotifyActivity;
 import com.logistics.hypernym.logistic.R;
 import com.logistics.hypernym.logistic.models.DrawerItemSelectedEvent;
-import com.logistics.hypernym.logistic.models.NotificationData;
 import com.logistics.hypernym.logistic.toolbox.ToolbarListener;
-import com.logistics.hypernym.logistic.utils.ActivityUtils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by shamis on 08-Dec-17.
@@ -48,7 +38,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener,OnMap
     private GoogleMap googleMap;
     LocationManager locationManager;
     Context fContext;
-
+    LatLng pos;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +58,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener,OnMap
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_home, container, false);
 
+
+
         mMapView = (MapView) view.findViewById(R.id.mapView);
 
 
@@ -85,18 +77,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener,OnMap
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
-                    LatLng pos;
 
-                    Location l;
-                    l = (Location) location;
+
+                    Location l = (Location) location;
                     pos = new LatLng(l.getLatitude(), l.getLongitude());
                     if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
 
-                    if (googleMap!=null){
+                    if (l!=null){
                         googleMap.setMyLocationEnabled(true);
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 15.4f));
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos,18.4f));
                         googleMap.setTrafficEnabled(true);
                     }
 
@@ -154,8 +145,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener,OnMap
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.googleMap=googleMap;
+    public void onMapReady(GoogleMap google) {
+        this.googleMap=google;
+
     }
 
     public static class ViewHolder {

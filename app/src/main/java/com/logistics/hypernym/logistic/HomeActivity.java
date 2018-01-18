@@ -19,10 +19,8 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,10 +30,11 @@ import com.logistics.hypernym.logistic.enumerations.AnimationEnum;
 import com.logistics.hypernym.logistic.fragments.DistanceFragment;
 import com.logistics.hypernym.logistic.fragments.HomeFragment;
 import com.logistics.hypernym.logistic.fragments.JobFragment;
+import com.logistics.hypernym.logistic.fragments.JobNoticationFragment;
 import com.logistics.hypernym.logistic.fragments.Profile_Fragment;
 import com.logistics.hypernym.logistic.models.Drawer;
 import com.logistics.hypernym.logistic.models.DrawerItemSelectedEvent;
-import com.logistics.hypernym.logistic.models.NotificationData;
+import com.logistics.hypernym.logistic.models.JobInfo_;
 import com.logistics.hypernym.logistic.toolbox.OnItemClickListener;
 import com.logistics.hypernym.logistic.toolbox.ToolbarListener;
 import com.logistics.hypernym.logistic.utils.ActivityUtils;
@@ -65,7 +64,7 @@ public class HomeActivity extends AppCompatActivity implements ToolbarListener, 
     private BlurView mBlurView;
     private final float mRadius = 10;
     SharedPreferences sharedPreferences;
-    ArrayList<NotificationData> infoList;
+    ArrayList<JobInfo_> infoList;
     private SimpleDialog mSimpleDialog;
     private RelativeLayout mBranchSelectionLayout;
 
@@ -79,7 +78,7 @@ public class HomeActivity extends AppCompatActivity implements ToolbarListener, 
         sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("list", null);
-        Type type = new TypeToken<ArrayList<NotificationData>>() {}.getType();
+        Type type = new TypeToken<ArrayList<JobInfo_>>() {}.getType();
         infoList = gson.fromJson(json, type);
 
 
@@ -135,9 +134,10 @@ public class HomeActivity extends AppCompatActivity implements ToolbarListener, 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            mSimpleDialog = new SimpleDialog(this, null, getString(R.string.msg_exit),
-                    getString(R.string.button_cancel), getString(R.string.button_ok), new View.OnClickListener() {
+        }
+        else
+            {
+            mSimpleDialog = new SimpleDialog(this, null, getString(R.string.msg_exit),getString(R.string.button_cancel), getString(R.string.button_ok), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     switch (view.getId()) {
@@ -239,13 +239,15 @@ public class HomeActivity extends AppCompatActivity implements ToolbarListener, 
         } else {
            mNumberOfCartItemsText.setText(String.valueOf(infoList.size()));
        }
+
        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),JobNotifyActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
-                finish();
+//                Intent intent=new Intent(getApplicationContext(),JobNotifyActivity.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
+//                finish();
+                ActivityUtils.startActivity(getApplicationContext(), FrameActivity.class,JobNoticationFragment.class.getName(),null);
 
             }
         });
